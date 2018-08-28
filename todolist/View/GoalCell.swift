@@ -10,7 +10,7 @@ import UIKit
 
 class GoalCell: UITableViewCell {
 
-    @IBOutlet weak var Edit: UIButton!
+    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var goalText: UILabel!
     
     func configureCell(goalText:String){

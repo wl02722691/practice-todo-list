@@ -48,6 +48,7 @@
                                         </state>
                                         <connections>
                                             <action selector="addGoalBtnWasPressed:" destination="nv9-J7-3ak" eventType="touchUpInside" id="L2M-uJ-XmK"/>
+                                            <segue destination="uug-Ce-RFM" kind="show" identifier="CreatGoalVC" id="JMi-5j-7DC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -113,7 +114,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="Edit" destination="jU0-dd-2ug" id="h50-yy-aLh"/>
+                                            <outlet property="editBtn" destination="jU0-dd-2ug" id="C53-uc-S0o"/>
                                             <outlet property="goalText" destination="eqW-SX-EEp" id="7ui-Ap-TCR"/>
                                         </connections>
                                     </tableViewCell>
@@ -234,6 +235,7 @@
                     <connections>
                         <outlet property="goalTextView" destination="Saq-zi-qj8" id="q0n-ng-BCt"/>
                         <outlet property="nextBtn" destination="2mG-UR-1hJ" id="F6A-f3-9om"/>
+                        <outlet property="titleLbl" destination="8qr-53-EQS" id="l5z-Xo-1my"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0I-CE-LVN" userLabel="First Responder" sceneMemberID="firstResponder"/>
