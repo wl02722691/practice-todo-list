@@ -38,4 +38,5 @@
     }
     
 ```
-在GoalVC接到資料就能顯示在畫面上了
+參考：Closures in iOS to pass data :Swift Sidebars xCode：https://goo.gl/iccGo4
+
