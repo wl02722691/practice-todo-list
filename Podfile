@@ -6,7 +6,6 @@ target 'todolist' do
   use_frameworks!
 
   # Pods for todolist
-	pod 'IQKeyboardManagerSwift'
 
 
 end

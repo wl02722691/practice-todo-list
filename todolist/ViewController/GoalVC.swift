@@ -9,12 +9,22 @@
 import UIKit
 
 class GoalVC: UIViewController {
-    var editContentGoalVC = ""
-    let buttonSelect = ButtonSelect.self
-    var goalArray = ["eqweqe","eqweqwe","weqeq","weqweqe"]
-    var text = ""
+    
+    var goalArray = ["Alice","Nia","Crystal","Ling"]
     var editGoal = ""
-    var tag = 0
+    var tag:Int?
+    var post = ""
+    
+    func dataEntered(_ post:String) {
+        self.post = post
+        if self.tag == nil {
+            self.goalArray.append(post)
+            self.tableView.reloadData()
+        }else{
+            self.goalArray[self.tag!] = post
+            self.tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -23,66 +33,38 @@ class GoalVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
-
-        let editUpdatednotificationName = Notification.Name("editUpdated")
-        NotificationCenter.default.addObserver(self, selector: #selector(editUpdated(noti:)), name: editUpdatednotificationName, object: nil)
         
-        let notificationName = Notification.Name("dataUpdated")
-        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdated(noti:)), name: notificationName, object: nil)
-        updateInfo()
-    }
- 
-    func updateInfo(){
-        tableView.reloadData()
-    }
-    
-    @objc func editUpdated(noti:Notification) {
-      let text = noti.userInfo!["editText"] as! String
-        goalArray[tag] = text
-        tableView.reloadData()
-    }
-    
-    
-    
-    @objc func dataUpdated(noti:Notification) {
-        text = noti.userInfo!["goalText"] as! String
-        goalArray.append(text)
-        updateInfo()
     }
     
     @IBAction func addGoalBtnWasPressed(_ sender: UIButton) {
-        guard let createGoalVC = storyboard?.instantiateViewController(withIdentifier: "CreatGoalVC") else {return}
-        presentDetail(createGoalVC)
-        print(buttonSelect)
-        
-        reloadInputViews()
+        tag = nil
     }
     
-    @objc func editBtn(sender: UIButton){
+    @objc func editBtn(sender: UIButton) {
         editGoal = goalArray[sender.tag]
         tag = sender.tag
         print(sender.tag)
         print(editGoal)
         performSegue(withIdentifier: "CreatGoalVC", sender: sender)
         
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CreatGoalVC"{
-        if let createGoalVC = segue.destination as? CreatGoalVC{
-            createGoalVC.editContentCreatGoalVC = editGoal
-            createGoalVC.tag = tag
+        if segue.identifier == "CreatGoalVC" {
+            if let createGoalVC = segue.destination as? CreatGoalVC {
+                createGoalVC.contextFromGoalVC = editGoal
+                createGoalVC.tag = tag
             }
         }
     }
+    
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath)
     {
         let select:Int = indexPath.row
         goalArray.remove(at: select)
-        tableView.reloadData() // 更新tableView
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView,
@@ -93,16 +75,14 @@ class GoalVC: UIViewController {
     }
 }
 
-
-
-
 extension GoalVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return goalArray.count
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "goalCell") as? GoalCell else {return UITableViewCell() }
         let index = goalArray[indexPath.row]
         cell.editBtn.tag = indexPath.row
@@ -111,7 +91,5 @@ extension GoalVC : UITableViewDelegate,UITableViewDataSource{
         
         return cell
     }
-    
-
 }
 
