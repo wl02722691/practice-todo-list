@@ -1,4 +1,2 @@
 # todo-list
-
-
-HIHIHI
+用四種方式在兩個Controller間傳值
