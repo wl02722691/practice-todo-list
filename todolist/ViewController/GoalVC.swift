@@ -12,10 +12,7 @@ class GoalVC: UIViewController {
     var observation: NSKeyValueObservation?
     @objc dynamic var viewModel: ViewModel = ViewModel()
     
-    
-    let buttonSelect = ButtonSelect.self
-    var goalArray = ["eqweqe","eqweqwe","weqeq","weqweqe"]
-    var text = ""
+    var goalArray = ["Alice","Luke","Spock","TaiHsin"]
     var editGoal = ""
     var tag:Int?
     
@@ -31,6 +28,7 @@ class GoalVC: UIViewController {
             debugPrint("old \(change.oldValue)")
             debugPrint("new \(change.newValue)")
             debugPrint(object.viewModel.value1)
+            
             if self.tag == nil {
                 self.goalArray.append(object.viewModel.value1)
                 self.tableView.reloadData()
@@ -46,13 +44,12 @@ class GoalVC: UIViewController {
         tag = nil
     }
     
-    @objc func editBtn(sender: UIButton){
+    @objc func editBtn(sender: UIButton) {
         editGoal = goalArray[sender.tag]
         tag = sender.tag
         print(sender.tag)
         print(editGoal)
         performSegue(withIdentifier: "CreatGoalVC", sender: sender)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,25 +59,25 @@ class GoalVC: UIViewController {
             createGoalVC.tag = tag
             createGoalVC.observation = observation
             createGoalVC.viewModel = viewModel
-           // createGoalVC.delegate = self
+       
             }
         }
     }
     
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCellEditingStyle,
-                   forRowAt indexPath: IndexPath)
-    {
+                   forRowAt indexPath: IndexPath) {
         let select:Int = indexPath.row
         goalArray.remove(at: select)
         tableView.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView,
                    titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath)
-        -> String?
-    {
+        -> String? {
         return "delete"
+            
     }
 }
 
@@ -99,7 +96,6 @@ extension GoalVC : UITableViewDelegate,UITableViewDataSource{
         
         return cell
     }
-    
 
 }
 

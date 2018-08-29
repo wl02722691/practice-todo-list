@@ -15,7 +15,6 @@
 		6964989C21354086007D312B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6964989A21354086007D312B /* LaunchScreen.storyboard */; };
 		696498A42135425A007D312B /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498A32135425A007D312B /* GoalVC.swift */; };
 		696498A62135460F007D312B /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498A52135460F007D312B /* GoalCell.swift */; };
-		696498A8213548FB007D312B /* ButtonSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498A7213548FB007D312B /* ButtonSelect.swift */; };
 		696498AA21354ACE007D312B /* CreatGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498A921354ACE007D312B /* CreatGoalVC.swift */; };
 		696498AF21354E2F007D312B /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498AE21354E2F007D312B /* UIViewControllerExt.swift */; };
 		696498B1213550BF007D312B /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696498B0213550BF007D312B /* UIViewExt.swift */; };
@@ -33,7 +32,6 @@
 		6964989D21354086007D312B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696498A32135425A007D312B /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		696498A52135460F007D312B /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
-		696498A7213548FB007D312B /* ButtonSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelect.swift; sourceTree = "<group>"; };
 		696498A921354ACE007D312B /* CreatGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatGoalVC.swift; sourceTree = "<group>"; };
 		696498AE21354E2F007D312B /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		696498B0213550BF007D312B /* UIViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				696498B221367618007D312B /* ViewModel.swift */,
-				696498A7213548FB007D312B /* ButtonSelect.swift */,
 				696498AE21354E2F007D312B /* UIViewControllerExt.swift */,
 				696498B0213550BF007D312B /* UIViewExt.swift */,
 			);
@@ -248,7 +245,6 @@
 				696498A62135460F007D312B /* GoalCell.swift in Sources */,
 				696498B321367618007D312B /* ViewModel.swift in Sources */,
 				696498AA21354ACE007D312B /* CreatGoalVC.swift in Sources */,
-				696498A8213548FB007D312B /* ButtonSelect.swift in Sources */,
 				6964989721354084007D312B /* todolist.xcdatamodeld in Sources */,
 				696498B1213550BF007D312B /* UIViewExt.swift in Sources */,
 				6964988F21354083007D312B /* AppDelegate.swift in Sources */,

@@ -20,7 +20,6 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
     var tag:Int?
     var delegate:DataSentDelegate? = nil
     
-    
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var goalTextView: UITextView!
     @IBOutlet weak var nextBtn: UIButton!
@@ -39,15 +38,17 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
         }else{
             goalTextView.text = editContentCreatGoalVC
             titleLbl.text = "edit"
+            
         }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if goalTextView.text == "What is your goal?"{
             goalTextView.text = ""
-            
+
         }else{
             return
+            
         }
     }
     
@@ -57,10 +58,12 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
                 let data = goalTextView.text
                 delegate?.userDidEnterData(data: data!)
                 dismissDetail()
+                
         }
     }
     
     @IBAction func backBtnWasPressed(_ sender: Any) {
         dismissDetail()
+        
     }
 }
