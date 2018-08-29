@@ -8,7 +8,11 @@
 
 import UIKit
 
-class GoalVC: UIViewController,DataSentDelegate {
+class GoalVC: UIViewController {
+    var observation: NSKeyValueObservation?
+    @objc dynamic var viewModel: ViewModel = ViewModel()
+    
+    
     let buttonSelect = ButtonSelect.self
     var goalArray = ["eqweqe","eqweqwe","weqeq","weqweqe"]
     var text = ""
@@ -22,21 +26,40 @@ class GoalVC: UIViewController,DataSentDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
-
+        observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
+            print("hello")
+            debugPrint("old \(change.oldValue)")
+            debugPrint("new \(change.newValue)")
+            debugPrint(object.viewModel.value1)
+            }
+       
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        if viewModel.value1 != nil {
+//            print(viewModel.value1)
+//            observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
+//               print("hello")
+//                debugPrint("old \(change.oldValue)")
+//                debugPrint("new \(change.newValue)")
+//                debugPrint(object.viewModel.value1)
+//            }
+//        }
+//    }
     
-    func userDidEnterData(data: String) {
-        if tag == nil{
-            print(data)
-            goalArray.append(data)
-            tableView.reloadData()
-        }else{
-            goalArray[tag!] = data
-            tableView.reloadData()
-        }
-     
-    }
+    
+//    func userDidEnterData(data: String) {
+//        if tag == nil{
+//            print(data)
+//            goalArray.append(data)
+//            tableView.reloadData()
+//        }else{
+//            goalArray[tag!] = data
+//            tableView.reloadData()
+//        }
+//     
+//    }
     
     @IBAction func addGoalBtnWasPressed(_ sender: UIButton) {
         tag = nil
@@ -57,7 +80,8 @@ class GoalVC: UIViewController,DataSentDelegate {
         if let createGoalVC = segue.destination as? CreatGoalVC{
             createGoalVC.editContentCreatGoalVC = editGoal
             createGoalVC.tag = tag
-            createGoalVC.delegate = self
+            createGoalVC.observation = observation
+           // createGoalVC.delegate = self
             }
         }
     }

@@ -12,10 +12,15 @@ protocol DataSentDelegate{
     func userDidEnterData(data:String)
 }
 
+
 class CreatGoalVC: UIViewController,UITextViewDelegate {
+    var observation: NSKeyValueObservation?
+    @objc dynamic var viewModel: ViewModel = ViewModel()
+    
     var editContentCreatGoalVC:String?
     var tag:Int?
     var delegate:DataSentDelegate? = nil
+    
     
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var goalTextView: UITextView!
@@ -23,11 +28,17 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         nextBtn.bindToKeyboard()
         goalTextView.delegate = self
-
+        
+//        observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
+//            //當viewModel.value1異動時，會執行此closure
+//            debugPrint("old \(change.oldValue)")
+//            debugPrint("new \(change.newValue)")
+//            debugPrint(object.viewModel.value1)
+//        }
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,13 +61,11 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
     }
     
     @IBAction func nextBtnWasPressed(_ sender: Any) {
-        
-        if delegate != nil{
             if goalTextView.text != nil {
+                viewModel.value1 = goalTextView.text
                 let data = goalTextView.text
                 delegate?.userDidEnterData(data: data!)
                 dismissDetail()
-            }
         }
     }
     
