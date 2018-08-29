@@ -9,18 +9,13 @@
 import UIKit
 
 class GoalVC: UIViewController {
-    var observation: NSKeyValueObservation?
-    @objc dynamic var viewModel: ViewModel = ViewModel()
     
-    
-    let buttonSelect = ButtonSelect.self
-    var goalArray = ["eqweqe","eqweqwe","weqeq","weqweqe"]
-    var text = ""
+    var goalArray = ["Alice","Nia","Crystal","Ling"]
     var editGoal = ""
     var tag:Int?
     var post = ""
     
-    func dataEntered(_ post:String){
+    func dataEntered(_ post:String) {
         self.post = post
         if self.tag == nil {
             self.goalArray.append(post)
@@ -39,15 +34,13 @@ class GoalVC: UIViewController {
         tableView.dataSource = self
         tableView.isHidden = false
         
-   
-       
     }
     
     @IBAction func addGoalBtnWasPressed(_ sender: UIButton) {
         tag = nil
     }
     
-    @objc func editBtn(sender: UIButton){
+    @objc func editBtn(sender: UIButton) {
         editGoal = goalArray[sender.tag]
         tag = sender.tag
         print(sender.tag)
@@ -57,13 +50,10 @@ class GoalVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "CreatGoalVC"{
-        if let createGoalVC = segue.destination as? CreatGoalVC{
-            createGoalVC.editContentCreatGoalVC = editGoal
-            createGoalVC.tag = tag
-            createGoalVC.observation = observation
-            createGoalVC.viewModel = viewModel
-           // createGoalVC.delegate = self
+        if segue.identifier == "CreatGoalVC" {
+            if let createGoalVC = segue.destination as? CreatGoalVC {
+                createGoalVC.contextFromGoalVC = editGoal
+                createGoalVC.tag = tag
             }
         }
     }
@@ -91,7 +81,8 @@ extension GoalVC : UITableViewDelegate,UITableViewDataSource{
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "goalCell") as? GoalCell else {return UITableViewCell() }
         let index = goalArray[indexPath.row]
         cell.editBtn.tag = indexPath.row
@@ -100,7 +91,5 @@ extension GoalVC : UITableViewDelegate,UITableViewDataSource{
         
         return cell
     }
-    
-
 }
 

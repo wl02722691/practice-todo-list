@@ -9,20 +9,11 @@
 import UIKit
 
 class GoalCell: UITableViewCell {
-
+    
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var goalText: UILabel!
     
     func configureCell(goalText:String){
         self.goalText.text = goalText
     }
-    
-    
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
