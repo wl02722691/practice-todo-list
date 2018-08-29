@@ -26,40 +26,22 @@ class GoalVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = false
+        
         observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
             print("hello")
             debugPrint("old \(change.oldValue)")
             debugPrint("new \(change.newValue)")
             debugPrint(object.viewModel.value1)
+            if self.tag == nil {
+                self.goalArray.append(object.viewModel.value1)
+                self.tableView.reloadData()
+            }else{
+                self.goalArray[self.tag!] = object.viewModel.value1
+                self.tableView.reloadData()
+                }
             }
        
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if viewModel.value1 != nil {
-//            print(viewModel.value1)
-//            observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
-//               print("hello")
-//                debugPrint("old \(change.oldValue)")
-//                debugPrint("new \(change.newValue)")
-//                debugPrint(object.viewModel.value1)
-//            }
-//        }
-//    }
-    
-    
-//    func userDidEnterData(data: String) {
-//        if tag == nil{
-//            print(data)
-//            goalArray.append(data)
-//            tableView.reloadData()
-//        }else{
-//            goalArray[tag!] = data
-//            tableView.reloadData()
-//        }
-//     
-//    }
     
     @IBAction func addGoalBtnWasPressed(_ sender: UIButton) {
         tag = nil
@@ -72,7 +54,6 @@ class GoalVC: UIViewController {
         print(editGoal)
         performSegue(withIdentifier: "CreatGoalVC", sender: sender)
         
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,6 +62,7 @@ class GoalVC: UIViewController {
             createGoalVC.editContentCreatGoalVC = editGoal
             createGoalVC.tag = tag
             createGoalVC.observation = observation
+            createGoalVC.viewModel = viewModel
            // createGoalVC.delegate = self
             }
         }

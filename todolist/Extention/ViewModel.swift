@@ -1,13 +1,12 @@
 //
-//  Data.swift
-//  KVOLab
+//  ViewModel.swift
+//  todolist
 //
-//  Created by Allen Huang on 2018/5/1.
-//  Copyright © 2018年 Allen Huang. All rights reserved.
+//  Created by 張書涵 on 2018/8/28.
+//  Copyright © 2018年 AliceChang. All rights reserved.
 //
 import Foundation
 
 class ViewModel : NSObject{
     @objc dynamic var value1: String = ""
-    //@objc dynamic var value2: String = ""
 }
