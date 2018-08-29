@@ -28,7 +28,6 @@ class GoalVC: UIViewController {
         tableView.isHidden = false
         
         observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
-            print("hello")
             debugPrint("old \(change.oldValue)")
             debugPrint("new \(change.newValue)")
             debugPrint(object.viewModel.value1)
