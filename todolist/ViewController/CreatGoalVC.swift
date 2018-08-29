@@ -42,6 +42,8 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
         }
     }
     
+    
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if goalTextView.text == "What is your goal?"{
             goalTextView.text = ""
@@ -51,12 +53,21 @@ class CreatGoalVC: UIViewController,UITextViewDelegate {
         }
     }
     
+    func getData() -> (String){
+        let post: String = goalTextView.text
+        return post
+    }
+    
     @IBAction func nextBtnWasPressed(_ sender: Any) {
             if goalTextView.text != nil {
                 viewModel?.value1 = goalTextView.text
                 let data = goalTextView.text
                 delegate?.userDidEnterData(data: data!)
-                dismissDetail()
+                if let controller = presentingViewController as? GoalVC{
+                    dismiss(animated: true) {
+                        controller.dataEntered(self.getData())
+                    }
+                }
         }
     }
     

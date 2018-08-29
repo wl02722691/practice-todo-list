@@ -18,6 +18,18 @@ class GoalVC: UIViewController {
     var text = ""
     var editGoal = ""
     var tag:Int?
+    var post = ""
+    
+    func dataEntered(_ post:String){
+        self.post = post
+        if self.tag == nil {
+            self.goalArray.append(post)
+            self.tableView.reloadData()
+        }else{
+            self.goalArray[self.tag!] = post
+            self.tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -27,18 +39,7 @@ class GoalVC: UIViewController {
         tableView.dataSource = self
         tableView.isHidden = false
         
-        observation = observe(\.viewModel.value1, options:[.old, .new]) { (object, change) in
-            debugPrint("old \(change.oldValue)")
-            debugPrint("new \(change.newValue)")
-            debugPrint(object.viewModel.value1)
-            if self.tag == nil {
-                self.goalArray.append(object.viewModel.value1)
-                self.tableView.reloadData()
-            }else{
-                self.goalArray[self.tag!] = object.viewModel.value1
-                self.tableView.reloadData()
-                }
-            }
+   
        
     }
     
