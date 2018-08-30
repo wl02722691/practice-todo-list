@@ -1,5 +1,5 @@
 # Notification
-#兩個 controller 間的資料溝通： 用 Notification 回傳 CreatGoalVC的goalTextView.text 值到 GoalVC ，並呈現在 tableView 上。
+# 兩個 controller 間的資料溝通： 用 Notification 回傳 CreatGoalVC的goalTextView.text 值到 GoalVC ，並呈現在 tableView 上。
 
 
 在 CreatGoalVC 的 nextBtnWasPressed 中判斷 editContentCreatGoalVC 是否有從 GoalVC 傳過來的 text 來當作判斷 add 與 edit 的依據，在這裡 post Notification ， userInfo 就放想傳回 GoalVC 的 goalTextView.text 。
