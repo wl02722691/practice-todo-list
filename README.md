@@ -51,17 +51,6 @@
         NotificationCenter.default.addObserver(self, selector: #selector(dataUpdated(noti:)), name: notificationName, object: nil)
 
 ``` 
->Delegate實作方法
-
->1.先去宣告 protocol ，把想實作的能力寫在protocol裡面
-
->2.有一個變數型別是 protocol type
-
->3.想溝通的物件要 conform protocol 
-
->4.要在目標頁面實作 protocal 的能力
-
->5.並將 delegate 指向目標頁
 
 
 參考：多頁面 app 間的資料傳遞：https://goo.gl/BNurUC
